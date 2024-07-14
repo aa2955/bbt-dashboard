@@ -64,6 +64,11 @@ section {
   padding: 20px; 
 }
 
+.Simah {
+  width: auto;
+  height: 100px;
+}
+
 section:last-child {
   border-bottom: none;
 }
