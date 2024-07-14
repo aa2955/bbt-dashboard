@@ -36,17 +36,16 @@ header {
 }
 
 .main-content {
-  position: relative;
+  position: relative; 
   background-image: url('./background.png'); 
-  background-size: cover; 
-  background-position: center; 
-  height: 100vh; 
-  margin: 0;
-  padding: 0;
+  background-size: cover;
+  background-position: center;
+  width: 2000px;
+  height: 1000px;
 }
 
 .content-overlay {
-  position: relative;
+  position: absolute; 
   top: 0;
   left: 0;
   width: 100%;
@@ -64,18 +63,15 @@ header {
 
 .Simah {
   position: absolute;
-  right: -28%;
-  top: 1%;
-  width: 100%;
-  height: 100%;
-}
-
-section:last-child {
-  border-bottom: none;
+  right: 5%; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  width: auto; 
+  height: 80%; 
 }
 
 footer {
-  background-color: white;
-  padding: 20px;
+  background-color: #8fd6f7;
+  padding: 10px;
 
 }
