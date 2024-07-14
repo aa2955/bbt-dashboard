@@ -10,7 +10,7 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; 
-  width: 100%;
+  width: auto;
 }
 
 main {
@@ -72,6 +72,24 @@ header {
 
 footer {
   background-color: #8fd6f7;
+  color: rgb(14, 7, 105);
   padding: 10px;
+  text-align: center;
+  width: 1915px;
+  box-sizing: border-box; 
+}
 
+.text-row {
+  display:flex;
+  width: 100%; 
+}
+
+.left-text {
+  text-align: left; 
+  margin-left: 10px;
+}
+
+.right-text {
+  margin-left: 650px;
+  text-align: right; 
 }
