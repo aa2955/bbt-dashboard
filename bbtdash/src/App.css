@@ -46,6 +46,8 @@ section {
   background-size: cover; 
   background-position: center; 
   height: 100vh; 
+  margin: 0;
+  padding: 0;
 }
 
 .content-overlay {
@@ -62,6 +64,7 @@ section {
   color: white; 
   text-align: center; 
   padding: 20px; 
+  box-sizing: border-box;
 }
 
 .Simah {
