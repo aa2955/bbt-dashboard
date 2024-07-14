@@ -65,8 +65,10 @@ section {
 }
 
 .Simah {
+  position: absolute;
+  right: 70px;
   width: auto;
-  height: 100px;
+  height: 630px;
 }
 
 section:last-child {
