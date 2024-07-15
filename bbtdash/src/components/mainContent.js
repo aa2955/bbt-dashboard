@@ -14,7 +14,6 @@ const MainContent = () => {
     fetch('http://localhost:3001/regions')
       .then(response => response.json())
       .then(data => {
-        console.log('Regions data:', data); // Log fetched data
         setRegions(data.data);
       })
       .catch(error => console.error('Error fetching regions:', error));

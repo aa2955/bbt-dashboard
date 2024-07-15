@@ -28,7 +28,6 @@ app.get('/regions', (req, res) => {
       console.error('Error fetching regions:', err.message);
       res.status(500).json({ error: err.message });
     } else {
-        console.log('Regions fetched:', results);
       res.json({ data: results });
     }
   });
