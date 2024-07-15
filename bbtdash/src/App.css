@@ -80,11 +80,11 @@ header {
 
 .Simah {
   position: absolute;
-  right: 5%; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  width: auto; 
-  height: 80%; 
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: 80%;
 }
 
 .highlight {
@@ -128,4 +128,70 @@ footer {
 .right-text {
   margin-left: 650px;
   text-align: right; 
+}
+
+@media (max-width: 768px) {
+  .header-logo {
+    height: 60px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .main-content {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .content-box {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .Simah {
+    width: 60%;
+    height: auto;
+    right: 10px;
+    top: auto;
+    bottom: 10px;
+    transform: none;
+  }
+
+  .text-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .left-text, .right-text {
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo {
+    height: 50px;
+  }
+
+  .Simah {
+    width: 50%;
+    height: auto;
+    top: 100px;
+  }
+
+  .content-box {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .dropdown select {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  footer {
+    padding: 5px;
+    font-size: 14px;
+  }
 }
