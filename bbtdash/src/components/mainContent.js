@@ -1,46 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse';
-import Dropdown from './dropdown.js';
+import Dropdown from './dropdown';
 import Simah from './simah.svg';
 
 const MainContent = () => {
-  const [countries, setCountries] = useState([]);
   const [regions, setRegions] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [communities, setCommunities] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedCommunity, setSelectedCommunity] = useState('');
 
   useEffect(() => {
-    fetch('/countries')
+    fetch('http://localhost:3001/regions')
       .then(response => response.json())
       .then(data => {
-        const countryList = data.data.map(country => country.name);
-        setCountries(countryList);
-      });
+        console.log('Regions data:', data); // Log fetched data
+        setRegions(data.data);
+      })
+      .catch(error => console.error('Error fetching regions:', error));
   }, []);
 
   useEffect(() => {
-    if (selectedCountry) {
-      fetch(`/regions/${selectedCountry}`)
-        .then(response => response.json())
-        .then(data => {
-          const regionList = data.data.map(region => region.name);
-          setRegions(regionList);
-        });
-    }
-  }, [selectedCountry]);
-
-  useEffect(() => {
     if (selectedRegion) {
-      fetch(`/communities/${selectedRegion}`)
+      fetch(`http://localhost:3001/countries/${selectedRegion}`)
         .then(response => response.json())
-        .then(data => {
-          const communityList = data.data.map(community => community.name);
-          setCommunities(communityList);
-        });
+        .then(data => setCountries(data.data))
+        .catch(error => console.error('Error fetching countries:', error));
     }
   }, [selectedRegion]);
+
+  useEffect(() => {
+    if (selectedCountry) {
+      fetch(`http://localhost:3001/communities/${selectedCountry}`)
+        .then(response => response.json())
+        .then(data => setCommunities(data.data))
+        .catch(error => console.error('Error fetching communities:', error));
+    }
+  }, [selectedCountry]);
 
   return (
     <section id="home" className="main-content">
@@ -55,12 +51,33 @@ const MainContent = () => {
           This tool was developed by the BBT MCI team. For questions, email info@bbtbooks.org.
         </p>
         <p><span className="highlight">Enter your region, country, and community to get Bhadra 2024 Statistics.</span></p>
-        <Dropdown label="Country" options={countries} onChange={(e) => setSelectedCountry(e.target.value)} value={selectedCountry} />
-        {selectedCountry && (
-          <Dropdown label="Region" options={regions} onChange={(e) => setSelectedRegion(e.target.value)} value={selectedRegion} />
-        )}
+        <Dropdown 
+          label="Region" 
+          options={regions} 
+          onChange={(e) => setSelectedRegion(e.target.value)} 
+          value={selectedRegion}
+          valueKey="Region_ID"
+          labelKey="Region"
+        />
         {selectedRegion && (
-          <Dropdown label="Community" options={communities} onChange={(e) => setSelectedCommunity(e.target.value)} value={selectedCommunity} />
+          <Dropdown 
+            label="Country" 
+            options={countries} 
+            onChange={(e) => setSelectedCountry(e.target.value)} 
+            value={selectedCountry}
+            valueKey="Country_ID"
+            labelKey="Country"
+          />
+        )}
+        {selectedCountry && (
+          <Dropdown 
+            label="Community" 
+            options={communities} 
+            onChange={(e) => setSelectedCommunity(e.target.value)} 
+            value={selectedCommunity}
+            valueKey="Community_ID"
+            labelKey="Community"
+          />
         )}
       </div>
       <img src={Simah} alt="Simah" className="Simah" />
