@@ -1,0 +1,65 @@
+service: backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:3000
+      allowedMethods:
+        - GET
+      allowedHeaders:
+        - Content-Type
+
+  vpc:
+    securityGroupIds:
+      - sg-0aa336071e889b9fc   # <- your RDS security group ID
+    subnetIds:
+      - subnet-07d925db42d6f241b
+      - subnet-0ad993bbec9a8296b
+
+  environment:
+    PGHOST: ${env:PGHOST}
+    PGUSER: ${env:PGUSER}
+    PGPASSWORD: ${env:PGPASSWORD}
+    PGDATABASE: ${env:PGDATABASE}
+    PGPORT: ${env:PGPORT, 5432}
+
+plugins:
+  - serverless-dotenv-plugin
+
+functions:
+  getRegions:
+    handler: handler.getRegions
+    events:
+      - httpApi:
+          path: /regions
+          method: get
+
+  getCountries:
+    handler: handler.getCountries
+    events:
+      - httpApi:
+          path: /countries/{regionId}
+          method: get
+          
+
+  getCommunities:
+    handler: handler.getCommunities
+    events:
+      - httpApi:
+          path: /communities/{countryId}
+          method: get
+          
+
+  getStats:
+    handler: handler.getStats
+    events:
+      - httpApi:
+          path: /stats/{communityId}
+          method: get
+          
+

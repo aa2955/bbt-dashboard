@@ -1,0 +1,217 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Helvetica Neue', sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #111827, #1f2937);
+}
+
+header {
+  background: rgba(143, 214, 247, 0.15);
+  padding: 10px 0;
+  color: #ffffff;
+  font-size: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.header-logo {
+  height: 80px;
+}
+
+.main-content {
+  position: relative;
+  background-image: url('./background.webp');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  padding: 60px 20px 100px 20px;
+  flex-grow: 1;
+}
+
+.content-box {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  color: #f4f4f4;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.content-box h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.content-box h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #8fd6f7;
+}
+
+.content-box p {
+  font-size: 1rem;
+  margin: 12px 0;
+}
+
+.highlight {
+  display: inline-block;
+  padding: 5px 10px;
+  background: rgba(3, 19, 114, 0.8);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.dropdown {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+select {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.2);
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+}
+
+/* New additions for contrast */
+select option {
+  background: #1e1e1e;
+  color: #ffffff;
+}
+
+select:focus,
+select:hover {
+  background: rgba(143, 214, 247, 0.2);
+  box-shadow: 0 0 10px rgba(143, 214, 247, 0.6);
+  border: 1px solid #8fd6f7;
+}
+
+
+.stats-box {
+  margin-top: 40px;
+  padding: 25px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.stats-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #8fd6f7;
+}
+
+.stats-box table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.stats-box th, .stats-box td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.stats-box th {
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.stats-box tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease;
+}
+
+.Simah {
+  position: absolute;
+  bottom: 250px;
+  right: 50px;
+  height: 500px;
+  opacity: 0.2;
+  pointer-events: none;
+  user-select: none;
+  filter: grayscale(30%) brightness(0.9);
+  z-index: 0;
+}
+
+footer {
+  background-color: #8fd6f7;
+  color: #1e1e1e;
+  padding: 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-box {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .Simah {
+    display: none;
+  }
+
+  .dropdown select {
+    font-size: 0.95rem;
+  }
+
+  .stats-box th, .stats-box td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
