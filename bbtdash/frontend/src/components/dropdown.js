@@ -5,11 +5,12 @@ const Dropdown = ({ label, options, onChange, value, valueKey, labelKey }) => (
     <label>{label}</label>
     <select onChange={onChange} value={value}>
       <option value="">Select {label}</option>
-      {options.map((option, index) => (
-        <option key={index} value={option[valueKey]}>
+      {(options || []).map((option, index) => (
+        <option key={`${label}-${index}`} value={option[valueKey]}>
           {option[labelKey]}
-        </option>
-      ))}
+      </option>
+    ))}
+
     </select>
   </div>
 );

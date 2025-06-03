@@ -1,0 +1,5 @@
+node_modules
+.serverless
+# Ignore env files
+.env
+.env.*
