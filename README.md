@@ -2,6 +2,8 @@
 
 An interactive, full-stack web dashboard to visualize community-level book distribution stats across global regions and campaigns. Built for BBT MCI to help set and track collective goals like **Bhadra 2024: Surge to 100k!**
 
+🟢 **Live Now:** [https://aa2955.github.io/bbt-dashboard](https://aa2955.github.io/bbt-dashboard)
+
 ---
 
 ## 🌐 Live Features
