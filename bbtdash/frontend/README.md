@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+# 📋 BBT Dashboard – Community Book Distribution Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive, full-stack web dashboard to visualize community-level book distribution stats across global regions and campaigns. Built for BBT MCI to help set and track collective goals like **Bhadra 2024: Surge to 100k!**
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌐 Live Features
 
-### `npm start`
+* 🔍 Region → Country → Community cascading dropdown
+* 📊 Dynamic stats table (campaign-wise data per year)
+* 📈 Aggregated bar chart (pledge vs. actual per year)
+* 🪊 Stylish, modern UI (glassmorphic design)
+* ⚡ Serverless backend (AWS Lambda + PostgreSQL RDS)
+* 🔐 Live API connected to production data
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 💠 Technologies Used
 
-### `npm test`
+### 💻 Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **React.js**
+* **Recharts** (bar chart rendering)
+* **CSS3** (modern design + responsive)
 
-### `npm run build`
+### ☁️ Backend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **AWS Lambda** (Node.js runtime)
+* **Amazon API Gateway** (HTTP API)
+* **PostgreSQL** on **Amazon RDS**
+* **Serverless Framework** (infra-as-code + deployment)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 📆 Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* `recharts`
+* `pg` (PostgreSQL client)
+* `serverless`
+* `serverless-dotenv-plugin`
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📁 Project Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+bbt-dashboard/
+├── backend/                  # Serverless backend functions
+│   ├── handler.js            # Lambda function logic
+│   ├── serverless.yml        # Serverless config (routes, env, VPC)
+│   └── .env                  # Secrets (PGHOST, PGUSER, etc.)
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── MainContent.js
+│   │   │   ├── Dropdown.js
+│   │   │   ├── Header.js / Footer.js
+│   │   ├── App.js
+│   │   └── App.css
+│   └── public/
+│       └── background.webp / simah.svg
+│
+├── data/
+│   ├── Region.csv
+│   ├── Country.csv
+│   ├── Community.csv
+│   ├── Campaign.csv
+│   ├── Participation.csv
+│   └── BBTDash.sql           # SQL schema script
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## ⚙️ Setup & Development
 
-## Learn More
+### 1. 🧬 Prerequisites
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Node.js + npm
+* AWS CLI + credentials
+* Serverless CLI (`npm install -g serverless`)
+* PostgreSQL or Amazon RDS instance
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 2. ⚡ Backend Setup
 
-### Code Splitting
+```bash
+cd backend/
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Update .env with DB connection info
+PGHOST=your-db-host
+PGUSER=postgres
+PGPASSWORD=your-password
+PGDATABASE=BBTDash
+PGPORT=5432
 
-### Analyzing the Bundle Size
+# Deploy Lambdas
+serverless deploy --force
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 3. 💻 Frontend Setup
 
-### Making a Progressive Web App
+```bash
+cd frontend/
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+In `MainContent.js`, set your backend base URL:
 
-### Advanced Configuration
+```js
+const baseURL = 'https://xyz.execute-api.us-east-1.amazonaws.com';
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🔢 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| Route                     | Description                  |
+| ------------------------- | ---------------------------- |
+| `/regions`                | List of global regions       |
+| `/countries/:regionId`    | Countries in a region        |
+| `/communities/:countryId` | Communities in a country     |
+| `/stats/:communityId`     | Yearly pledge vs actual data |
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🎨 UI & Styling
+
+* Glassmorphism style panels
+* Fixed transparent mascot (Simah) in background
+* Mobile-first layout with custom dropdowns
+* Chart + table layout with fade-in animations
+
+---
+
+## 📊 Chart: Pledge vs Distribution
+
+* Aggregated per year (combined campaigns)
+* Dual bar chart: pledged vs actual
+* Responsive + tooltip + interactive
+
+---
+
+## 🔒 Security & Best Practices
+
+* DB password/host not committed – stored in `.env`
+* RDS access is VPC-restricted
+* API Gateway CORS enabled for specific frontend origins
+* Serverless plugin loads env securely
+
+---
+
+## 🌍 Future Improvements
+
+* Admin login with JWT
+* Community editing + CSV import
+* Export to PDF/CSV
+* Chart overlays for growth
+* Multi-year goals with projections
+
+---
+
+## 👨‍💼 Maintainer
+
+Project by **BBT MCI Team**
+Developed by: Anurag Agarwal
+Contact: [info@bbtbooks.org](mailto:info@bbtbooks.org)
+
+
